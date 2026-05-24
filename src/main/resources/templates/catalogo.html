@@ -26,6 +26,61 @@
         <h1 class="text-center mb-4">
             Catálogo de Videojuegos
         </h1>
+    
+    <form action="/catalogo"
+        method="get"
+        class="row mb-4">
+    
+    <div class="col-md-4">
+        <input type="text"
+            name="nombre"
+            class="form-control"
+            placeholder="Buscar videojuego..."
+            th:value="${nombre}">
+    </div>
+
+        <div class="col-md-4">
+            <select name="categoriaId"
+            class="form-select">
+            <option value="">
+                Todas las categorías
+            </option>
+
+            <option
+                th:each="categoria : ${categorias}"
+                th:value="${categoria.id}"
+                th:text="${categoria.nombre}"
+                th:selected="${categoria.id == categoriaId}">
+            </option>
+        </select>
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="submit"
+                    class="btn btn-primary w-100">
+
+                    Buscar
+
+                </button>
+        </div>
+
+        <div class="col-md-2">
+            <a href="/catalogo"
+                class="btn btn-secondary w-100">
+            
+                Limpiar
+
+            </a>
+        </div>
+    </form>
+
+        <div
+            th:if="${#lists.isEmpty(productos)}"
+            class="alert alert-warning">
+        
+            No se encontraron productos.
+        </div>
 
         <div class="row">
 
