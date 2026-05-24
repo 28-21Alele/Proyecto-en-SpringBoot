@@ -4,20 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Kenaro's Store</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-
-            <a class="navbar-brand fw-bold" href="#">
-                Kenaro's Store
-            </a>
-
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <a class="navbar-brand fw-bold" href="/">
+                    🎮 Kenaro's Store
+                </a>
+                <div class="d-flex gap-2">
+                    <a href="/catalogo" class="btn btn-outline-light">
+                        Catálogo
+                    </a>
+                    <a href="/carrito" class="btn btn-outline-light">
+                        🛒 Carrito
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -27,107 +33,71 @@
             Catálogo de Videojuegos
         </h1>
     
-    <form action="/catalogo"
-        method="get"
-        class="row mb-4">
-    
-    <div class="col-md-4">
-        <input type="text"
-            name="nombre"
-            class="form-control"
-            placeholder="Buscar videojuego..."
-            th:value="${nombre}">
-    </div>
+        <form action="/catalogo" method="get" class="row mb-4">
+            <div class="col-md-4">
+                <input type="text" name="nombre" class="form-control" placeholder="Buscar videojuego..." th:value="${nombre}">
+            </div>
 
-        <div class="col-md-4">
-            <select name="categoriaId"
-            class="form-select">
-            <option value="">
-                Todas las categorías
-            </option>
+            <div class="col-md-4">
+                <select name="categoriaId" class="form-select">
+                    <option value="">Todas las categorías</option>
+                    <option th:each="categoria : ${categorias}" 
+                            th:value="${categoria.id}" 
+                            th:text="${categoria.nombre}"
+                            th:selected="${categoria.id == categoriaId}">
+                    </option>
+                </select>
+            </div>
 
-            <option
-                th:each="categoria : ${categorias}"
-                th:value="${categoria.id}"
-                th:text="${categoria.nombre}"
-                th:selected="${categoria.id == categoriaId}">
-            </option>
-        </select>
-        </div>
-
-        <div class="col-md-2">
-
-            <button type="submit"
-                    class="btn btn-primary w-100">
-
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
                     Buscar
-
                 </button>
-        </div>
+            </div>
 
-        <div class="col-md-2">
-            <a href="/catalogo"
-                class="btn btn-secondary w-100">
-            
-                Limpiar
+            <div class="col-md-2">
+                <a href="/catalogo" class="btn btn-secondary w-100">
+                    Limpiar
+                </a>
+            </div>
+        </form>
 
-            </a>
-        </div>
-    </form>
-
-        <div
-            th:if="${#lists.isEmpty(productos)}"
-            class="alert alert-warning">
-        
+        <div th:if="${#lists.isEmpty(productos)}" class="alert alert-warning">
             No se encontraron productos.
         </div>
 
         <div class="row">
-
-            <div class="col-md-4 mb-4"
-                th:each="producto : ${productos}">
-
+            <div class="col-md-4 mb-4" th:each="producto : ${productos}">
                 <div class="card h-100 shadow-sm">
-
-                    <img src="https://placehold.co/600x400"
-                        class="card-img-top"
-                        alt="Videojuego">
-
-                    <div class="card-body">
-
-                        <h5 class="card-title"
-                            th:text="${producto.nombre}">
-                        </h5>
-
-                        <p class="card-text">
-                            Categoría:
-                            <span class="badge bg-secondary"
-                                th:text="${producto.categoria.nombre}">
-                            </span>
+                    <img src="https://placehold.co/600x400" class="card-img-top" alt="Videojuego">
+                    
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold" th:text="${producto.nombre}"></h5>
+                        
+                        <p class="card-text mb-1">
+                            Categoría: 
+                            <span class="badge bg-secondary" th:text="${producto.categoria.nombre}"></span>
+                        </p>
+                        
+                        <p class="card-text mb-3">
+                            Precio: 
+                            <strong class="text-success">$<span th:text="${producto.precio}"></span></strong>
                         </p>
 
-                        <p class="card-text">
-                            Precio:
-                            <strong class="text-success">
-                                $<span th:text="${producto.precio}"></span>
-                            </strong>
-                        </p>
-
-                        <a th:href="@{/producto/{id}(id=${producto.id})}"
-                        class="btn btn-primary">
-                            Ver detalle
-                        </a>
-
+                        <div class="d-flex gap-2 mt-auto">
+                            <a th:href="@{/producto/{id}(id=${producto.id})}" class="btn btn-primary flex-fill">
+                                Ver detalle
+                            </a>
+                            <a th:href="@{/agregar-carrito/{id}(id=${producto.id})}" class="btn btn-success flex-fill">
+                                🛒 Agregar
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
 </body>
-
 </html>
