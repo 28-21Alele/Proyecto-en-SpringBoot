@@ -13,7 +13,7 @@ Kenaro's Store es una aplicación web desarrollada con Spring Boot que simula un
 ## Clonar repositorio
 
 ```bash
-git clone https://github.com/USUARIO/kenaros-store.git
+git clone (https://github.com/28-21Alele/Proyecto-en-SpringBoot.git)
 ```
 
 ---
