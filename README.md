@@ -39,7 +39,7 @@ Kenaro's Store es una aplicación web desarrollada con Spring Boot que simula un
 
 ---
 
-## 🛠 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 ### Backend
 
