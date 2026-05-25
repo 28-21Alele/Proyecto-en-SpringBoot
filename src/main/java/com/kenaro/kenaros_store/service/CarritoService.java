@@ -48,4 +48,9 @@ public class CarritoService {
         public List<CarritoItem> obtenerCarritoVacio(){
             return new ArrayList<>();
         }
+
+        public Integer contarProductos(
+            List<CarritoItem> carrito){
+                return carrito.stream().mapToInt(CarritoItem::getCantidad).sum();
+            }
 }

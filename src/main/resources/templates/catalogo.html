@@ -21,6 +21,7 @@
                     </a>
                     <a href="/carrito" class="btn btn-outline-light">
                         🛒 Carrito
+                        <span class="badge bg-danger" th:text="${cantidadCarrito}"></span>
                     </a>
                 </div>
             </div>
@@ -69,8 +70,10 @@
         <div class="row">
             <div class="col-md-4 mb-4" th:each="producto : ${productos}">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://placehold.co/600x400" class="card-img-top" alt="Videojuego">
-                    
+                    <img th:src="@{'/images/' + ${producto.imagen}}"
+                            class="card-img-top"
+                            alt="Videojuego"
+                            style="height: 450px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold" th:text="${producto.nombre}"></h5>
                         

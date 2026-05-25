@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class CarritoController {
@@ -34,6 +35,13 @@ public class CarritoController {
         return carrito;
     }
 
+    @ModelAttribute("cantidadCarrito")
+    public Integer cantidadCarrito(HttpSession session){
+        List<CarritoItem> carrito = obtenerCarrito(session);
+
+        return carritoService.contarProductos(carrito);
+    }
+
     @GetMapping("/agregar-carrito/{id}")
     public String agregarProducto(
         @PathVariable Long id,
@@ -48,6 +56,7 @@ public class CarritoController {
             }
             return "redirect:/carrito";
         }
+
     @GetMapping("/carrito")
     public String verCarrito( HttpSession session, Model model){
         List<CarritoItem> carrito = obtenerCarrito(session);
