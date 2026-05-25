@@ -1,0 +1,51 @@
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+.hero-banner {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-item img {
+    border-radius: 12px;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.navbar-brand {
+    letter-spacing: 1px;
+}
+
+.producto-destacado .card-title {
+    min-height: 55px;
+}
+
+footer {
+    margin-top: 50px;
+}
+
+.img-carrito {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+}
